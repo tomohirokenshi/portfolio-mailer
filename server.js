@@ -11,7 +11,12 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["https://tomohirokenshi.github.io", "http://localhost:3000"],
+    origin: [
+      "https://tomohirokenshi.github.io/portfolio/",
+      "http://localhost:3000",
+    ],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
