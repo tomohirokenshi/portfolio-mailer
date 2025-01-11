@@ -6,22 +6,19 @@ const cors = require("cors");
 const nodemailer = require("nodemailer");
 
 const app = express();
-const PORT = process.env.PORT || 5000; // Use PORT from the environment or default to 5000
+const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["https://tomohirokenshi.github.io", "http://localhost:3000"], // Allow multiple origins
+    origin: ["https://tomohirokenshi.github.io", "http://localhost:3000"],
   })
 );
 
-// POST route to handle contact form submissions
 app.post("/api/contact", async (req, res) => {
   const { name, email, number, message } = req.body;
 
   try {
-    // Configure Nodemailer transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -30,7 +27,6 @@ app.post("/api/contact", async (req, res) => {
       },
     });
 
-    // Email options
     const mailOptions = {
       from: email,
       to: process.env.EMAIL_USER,
@@ -47,7 +43,6 @@ ${message}
       replyTo: email,
     };
 
-    // Send the email
     await transporter.sendMail(mailOptions);
     res.status(200).send("Message sent successfully!");
   } catch (error) {
@@ -59,7 +54,6 @@ ${message}
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
