@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://tomohirokenshi.github.io/portfolio/"],
+    origin: ["https://tomohirokenshi.github.io"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
