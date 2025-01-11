@@ -13,13 +13,8 @@ app.use(
   cors({
     origin: ["https://tomohirokenshi.github.io/portfolio/"],
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
   })
 );
-app.use((req, res, next) => {
-  res.header({ "Access-Control-Allow-Origin": "*" });
-  next();
-});
 
 app.post("/api/contact", async (req, res) => {
   const { name, email, number, message } = req.body;
